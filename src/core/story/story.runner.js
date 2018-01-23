@@ -20,10 +20,13 @@ class Answer {
 }
 
 class Message {
-    constructor(msg) {
+    constructor(msg, noWriteTime) {
         this.text = msg.text;
         this.from = msg.from;
-        this.writeTime = msg.writeTime || 3000;
+        if (noWriteTime) {
+            msg.writeTime = 0;
+        }
+        this.writeTime = msg.writeTime !== undefined ? msg.writeTime : 3000;
     }
 
     /**
@@ -41,9 +44,11 @@ class Step {
     constructor(step) {
         this.mode = step.mode; //mode de présentation de l'étape : sms / chat / face a face ...
         this.title = step.title;
-        this.messages = step.messages ? step.messages.map((msg) => {return new Message(msg).compile()}) : undefined;
+        this.messages = step.messages ? step.messages.map((msg) => {return new Message(msg, step.mode === 'narator').compile()}) : undefined;
         this.answers = step.answers ? step.answers.map((answer) => {return new Answer(answer).compile()}) : undefined;
         this.cursor = 0; //message en cours de lecture
+        this.destination = step.destination; //dans le cas ou le joueur n'a pas de réponse possible, l'étape doit avoir un attribut destination
+        this.clearMsg = step.clearMsg; //signifit qu'il faut nettoyer les messages
     }
 
     /**
@@ -162,13 +167,11 @@ class StoryRunner {
      * choisi une réponse et passe à l'étape suivante
      * @return {[type]} [description]
      */
-    answer(answer) {
-        //on commence par vérifier que la destination est bien disponible
-        // let found = false;
-        // this.step.answers.map((ans) => {if (ans.destination === answer.destination) found = true;});
-        // if (!found) throw new Error("Cette réponse n'existe pas");
+    moveTo(destination) {
 
-        this.moveCursor(answer.destination);
+        destination = destination || this.step.destination;
+
+        this.moveCursor(destination);
         this.runStep();
     }
 

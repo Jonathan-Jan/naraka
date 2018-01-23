@@ -34,20 +34,18 @@ class Narator extends Component {
     }
 
     hasPrev() {
-        return this.state.cursor === 0;
+        return this.state.cursor > 0;
     }
 
     previous() {
-        if (this.hasPrev()) return;
         this.setState({cursor:this.state.cursor-1});
     }
 
     hasNext() {
-        return this.state.cursor === this.state.messages.length-1;
+        return this.state.cursor < this.state.messages.length-1;
     }
 
     next() {
-        if (this.hasNext()) return;
         this.setState({cursor:this.state.cursor+1});
     }
 
@@ -60,10 +58,12 @@ class Narator extends Component {
                 <Flex/>
                 <div key={shortid.generate()} className="message">{msg.text}</div>
                 <Flex/>
-                <FlexRow>
-                    <RaisedButton disabled={this.hasPrev()} icon={<IconLeft/>} onClick={() => this.previous()}/>
-                    <RaisedButton disabled={this.hasNext()} icon={<IconRight/>} onClick={() => this.next()}/>
-                </FlexRow>
+                {(this.hasPrev() || this.hasNext()) &&
+                    <FlexRow>
+                        <RaisedButton disabled={!this.hasPrev()} icon={<IconLeft/>} onClick={() => this.previous()}/>
+                        <RaisedButton disabled={!this.hasNext()} icon={<IconRight/>} onClick={() => this.next()}/>
+                    </FlexRow>
+                }
             </div>
         );
     }

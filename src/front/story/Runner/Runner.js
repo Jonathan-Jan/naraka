@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import './Runner.css';
 import MainMenu from 'front/story/MainMenu';
 import PauseBtn from 'front/story/PauseBtn';
+import NextStepBtn from 'front/story/NextStepBtn';
 import SwitchMode from 'front/story/Runner/SwitchMode';
 
 import StoryRunner from 'core/story/story.runner';
@@ -23,12 +24,11 @@ class Runner extends Component {
         let messages = this.state.messages;
         messages.push(message);
         this.setState({messages:messages});
-        window.scroll({ top: 2500, left: 0, behavior: 'smooth' });
     }
 
     onAnswer(answer) {
         this.addMessage({text:answer.text,from:'player'});
-        this.storyRunner.answer(answer);
+        this.storyRunner.moveTo(answer.destination);
     }
 
     componentDidMount() {
@@ -48,10 +48,15 @@ class Runner extends Component {
         });
 
         this.storyRunner.onNewStep((step) => {
-            this.setState({step:step});
+            let messages = step.clearMsg === true || step.mode === 'narator' ? [] : this.state.messages;
+            this.setState({step:step,stepDone:false,messages:messages});
         });
 
         this.storyRunner.start();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        window.scroll({ top: 2500, left: 0, behavior: 'smooth' });
     }
 
     render() {
@@ -69,10 +74,10 @@ class Runner extends Component {
                     stepDone={this.state.stepDone}
                     onAnswer={(answer) => this.onAnswer(answer)}
                     />
+                <NextStepBtn onClick={() => this.storyRunner.moveTo()} visible={this.state.stepDone && !this.state.step.answers && this.state.step.destination}/>
             </div>
         );
     }
-
 }
 
 export default Runner;
