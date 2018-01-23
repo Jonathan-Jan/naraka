@@ -1,9 +1,10 @@
 #menu-runner {
-    position: absolute;
+    position: fixed;
     right: 10px;
     top: 60px;
     display: flex;
     flex-direction: column;
+    z-index: 1000;
 }
 
 #menu-runner > * {

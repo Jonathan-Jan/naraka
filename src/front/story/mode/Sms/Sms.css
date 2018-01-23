@@ -5,10 +5,21 @@
     color: white;
     display:flex;
     flex-direction: row;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.dialog-box {
+    padding-bottom: 40px;
+}
+
+.height-fix {
+    height: 100vh;
 }
 
 .Sms {
-    height: 100%;
     background-color: #fff6d7;
 }
 

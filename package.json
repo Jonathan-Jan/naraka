@@ -12,7 +12,8 @@
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
     "react-tap-event-plugin": "^3.0.2",
-    "shortid": "^2.2.8"
+    "shortid": "^2.2.8",
+    "smoothscroll-polyfill": "^0.4.0"
   },
   "scripts": {
     "start": "react-scripts start",

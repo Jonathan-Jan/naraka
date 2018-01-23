@@ -28,7 +28,9 @@ class Sms extends Component {
                     </FlexRow>
                 </header>
 
-                <div style={{display:'flex',flexDirection:'column',position: 'absolute',bottom: '50px',width: '100%'}}>
+                <div className='dialog-box'>
+                    <div className='height-fix'/>
+
                     <Messages messages={this.props.messages}/>
 
                     <Answers label="Saisissez un message..." disabled={!this.props.stepDone} answers={this.props.answers} onAnswer={this.props.onAnswer}/>

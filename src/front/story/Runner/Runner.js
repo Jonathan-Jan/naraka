@@ -23,7 +23,7 @@ class Runner extends Component {
         let messages = this.state.messages;
         messages.push(message);
         this.setState({messages:messages});
-        //smoothScroll();
+        window.scroll({ top: 2500, left: 0, behavior: 'smooth' });
     }
 
     onAnswer(answer) {
