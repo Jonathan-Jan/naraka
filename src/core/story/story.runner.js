@@ -22,8 +22,8 @@ class Answer {
 class Message {
     constructor(msg) {
         this.text = msg.text;
-        this.from = 'from';
-        this.writeTime = 3000;
+        this.from = msg.from;
+        this.writeTime = msg.writeTime || 3000;
     }
 
     /**
@@ -112,6 +112,8 @@ class StoryRunner {
         this.emitter.emit(EVENT.NEW_STEP, this.getStep());
         while(this.step.hasMessage()) {
             let message = await this.step.nextMessage();
+            //on récupère le style associé a cet emetteur
+            message.style = this.storyData._metadata.people[message.from];
             this.emitter.emit(EVENT.MESSAGE,message);
         }
         this.emitter.emit(EVENT.STEP_DONE);

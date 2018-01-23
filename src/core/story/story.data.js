@@ -5,8 +5,8 @@ let story =
         start:'start',
         people: {
             nina: {
-                backgroundColor:'white',
-                color:'pink'
+                backgroundColor:'#f9516e',
+                color:'white'
             }
         }
     },
@@ -30,16 +30,16 @@ let story =
 
     'resp1':{
         messages:[
-            {text:'Ah'},
-            {text:':/'},
+            {text:'Ah',from:'nina'},
+            {text:':/',from:'nina'},
         ],
     },
 
     'resp2':{
         title:'title2',
         messages:[
-            {text:'Si mal que ça ?'},
-            {text:'x)'},
+            {text:'Si mal que ça ?',from:'nina'},
+            {text:'x)',from:'nina'},
         ],
     },
 

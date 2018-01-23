@@ -1,7 +1,7 @@
-header {
+.Sms header {
     height: 55px;
     /* line-height: 35px; */
-    background-color: #cf7e43;
+    background-color: #c44;
     color: white;
     display:flex;
     flex-direction: row;

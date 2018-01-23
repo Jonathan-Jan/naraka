@@ -8,7 +8,7 @@ class Messages extends Component {
     renderMessages() {
         return this.props.messages.map((msg) => {
             return (
-                <Message key={shortid.generate()} from={msg.from} text={msg.text}/>
+                <Message key={shortid.generate()} from={msg.from} text={msg.text} style={msg.style}/>
             );
         });
     }
