@@ -1,3 +1,3 @@
 # Naraka
 
-http://localhost:3000/nakara/home
+http://localhost:3000/naraka/home

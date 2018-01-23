@@ -4,7 +4,6 @@ import './App.css';
 import { Route } from 'react-router-dom';
 
 import _C from 'core/constantes';
-import appEm from 'core/appEm';
 import history from 'front/app/history';
 
 import Runner from 'front/story/Runner/Runner';
@@ -24,15 +23,11 @@ class App extends Component {
         history.push(_C.ROUTE.PLAY);
     }
 
-    componentDidMount() {
-        appEm.on('play', (data) => this.play(data));
-    }
-
     render() {
 
         return (
             <div className="App">
-                <Route path={_C.ROUTE.HOME} render={(props) => <Home />}/>
+                <Route path={_C.ROUTE.HOME} render={(props) => <Home onPlay={() => this.play()}/>}/>
                 <Route path={_C.ROUTE.PLAY} render={(props) => <Runner />}/>
             </div>
         );

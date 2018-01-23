@@ -1,6 +1,6 @@
 //base constantes
 const _C = {
-    APP_NAME:'nakara',
+    APP_NAME:'naraka',
     ROUTE:{}
 }
 
