@@ -1,0 +1,17 @@
+.Narator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 24em;
+    background-color: #85b4bf;
+    height: 100%;
+    color: white;
+}
+
+.Narator .message {
+    /* visibility: hidden; */
+    /* max-height: 0px; */
+    /* transition: max-height 0.4s, visibility 0.4s; */
+    margin: 55px;
+}

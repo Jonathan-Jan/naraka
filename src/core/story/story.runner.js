@@ -39,7 +39,7 @@ class Message {
 
 class Step {
     constructor(step) {
-        this.mode = step.mode; //sms / chat / face a face ...
+        this.mode = step.mode; //mode de présentation de l'étape : sms / chat / face a face ...
         this.title = step.title;
         this.messages = step.messages ? step.messages.map((msg) => {return new Message(msg).compile()}) : undefined;
         this.answers = step.answers ? step.answers.map((answer) => {return new Answer(answer).compile()}) : undefined;
@@ -108,6 +108,10 @@ class StoryRunner {
         this.runStep();
     }
 
+    /**
+     * Déroulement des messages successif de l'étape
+     * @return {Promise} [description]
+     */
     async runStep() {
         this.emitter.emit(EVENT.NEW_STEP, this.getStep());
         while(this.step.hasMessage()) {

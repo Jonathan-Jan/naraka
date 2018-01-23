@@ -32,12 +32,4 @@ class Irl extends Component {
 
 }
 
-const styles = {
-    icon: {
-        height:'40px',
-        width:'40px',
-        color:'white'
-    }
-}
-
 export default Irl;

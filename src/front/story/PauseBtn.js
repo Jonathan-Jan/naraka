@@ -24,7 +24,7 @@ class PauseBtn extends Component {
 
     render() {
         return (
-            <RaisedButton onClick={() => {this.toggle()}} icon={this.state.isPaused ? <IconPlay/> : <IconPause />}/>
+            <RaisedButton style={{minWidth: '40px'}} onClick={() => {this.toggle()}} icon={this.state.isPaused ? <IconPlay/> : <IconPause />}/>
         );
     }
 

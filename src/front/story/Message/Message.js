@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import IconUser from 'material-ui/svg-icons/action/account-circle';
 import _ from 'lodash';
 
 import './Message.css';
@@ -7,7 +6,7 @@ import './Message.css';
 class Message extends Component {
 
     getStyle() {
-        let style = _.assign(style, this.props.style);
+        let style = _.assign({}, this.props.style);
 
         return style;
     }

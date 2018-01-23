@@ -46,7 +46,7 @@ class MainMenu extends Component {
     render() {
         return (
             <div>
-                <RaisedButton onClick={this.handleClick} icon={<NavigationMenu />}/>
+                <RaisedButton style={{minWidth: '40px'}} onClick={this.handleClick} icon={<NavigationMenu />}/>
                 <Popover
                     open={this.state.open}
                     anchorEl={this.state.anchorEl}

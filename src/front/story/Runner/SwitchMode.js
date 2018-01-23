@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Sms from 'front/story/mode/Sms/Sms';
 import ChatApp from 'front/story/mode/ChatApp/ChatApp';
 import Irl from 'front/story/mode/Irl/Irl';
+import Narator from 'front/story/mode/Narator/Narator';
 
 class SwitchMode extends Component {
 
@@ -12,13 +13,12 @@ class SwitchMode extends Component {
         switch (mode) {
             case 'sms':
                 return (<Sms {...props}/>);
-                break;
             case 'chatapp':
                 return (<ChatApp {...props}/>);
-                break;
             case 'irl':
                 return (<Irl {...props}/>);
-                break;
+            case 'narator':
+                return (<Narator {...props}/>);
             default:
                 return (<div>ERROR MODE NOT FOUND</div>);
         }

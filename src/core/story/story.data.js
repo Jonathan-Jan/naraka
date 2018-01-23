@@ -11,9 +11,21 @@ let story =
         }
     },
 
+    'start':{
+        mode:'narator',
+        title:'',
+        messages:[
+            {writeTime:1,text:'1111 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'},
+            {writeTime:1,text:'2222 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'},
+            {writeTime:1,text:'3333 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'},
+            {writeTime:1,text:'4444 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum'},
+        ],
+        destination:'start1'
+    },
+
 
     //etapes
-    'start':{
+    'start1':{
         mode:'sms',
         title:'Nina',
         messages:[
@@ -27,6 +39,7 @@ let story =
         answers:[
             {text:'Bof',destination:'resp1'},
             {text:"Comme d'hab",destination:'resp2'},
+            {text:"(narateur)",destination:'nar1'},
         ]
     },
 
@@ -41,6 +54,15 @@ let story =
 
     'resp2':{
         title:'title2',
+        messages:[
+            {text:'Si mal que ça ?',from:'nina'},
+            {text:'x)',from:'nina'},
+        ],
+    },
+
+    'nar1':{
+        mode:'narator',
+        title:'',
         messages:[
             {text:'Si mal que ça ?',from:'nina'},
             {text:'x)',from:'nina'},

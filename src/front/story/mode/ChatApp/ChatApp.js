@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import IconUser from 'material-ui/svg-icons/action/account-circle';
-import IconPhone from 'material-ui/svg-icons/communication/phone';
 import IconMenuPhone from 'material-ui/svg-icons/navigation/more-vert';
 import IconBack from 'material-ui/svg-icons/navigation/arrow-back';
 
