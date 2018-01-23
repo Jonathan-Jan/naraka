@@ -1,0 +1,16 @@
+#menu-runner {
+    position: absolute;
+    right: 10px;
+    top: 60px;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu-runner > * {
+    margin: 5px 0;
+}
+
+.Runner {
+    height: 100%;
+    width: 100%;
+}
