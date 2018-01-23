@@ -1,12 +1,17 @@
 header {
     height: 55px;
     /* line-height: 35px; */
-    background-color: #303030;
+    background-color: #cf7e43;
     color: white;
     display:flex;
     flex-direction: row;
 }
 
-.Smartphone {
+.Sms {
     height: 100%;
+    background-color: #fff6d7;
+}
+
+.Message .text{
+    background-color: white;
 }

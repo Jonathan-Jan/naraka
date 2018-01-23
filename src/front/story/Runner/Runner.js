@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './Runner.css';
 import MainMenu from 'front/story/MainMenu';
 import PauseBtn from 'front/story/PauseBtn';
-import Smartphone from 'front/story/Smartphone/Smartphone';
+import SwitchMode from 'front/story/Runner/SwitchMode';
 
 import StoryRunner from 'core/story/story.runner';
 
@@ -61,7 +61,8 @@ class Runner extends Component {
                     <MainMenu/>
                     <PauseBtn/>
                 </div>
-                <Smartphone
+                <SwitchMode
+                    mode={this.state.step.mode}
                     title={this.state.step.title}
                     messages={this.state.messages}
                     answers={this.state.step ? this.state.step.answers : null}

@@ -1,16 +1,25 @@
 let story =
 {
+    //info général sur l'histoire
     _metadata:{
-        start:'start'
+        start:'start',
+        people: {
+            nina: {
+                backgroundColor:'white',
+                color:'pink'
+            }
+        }
     },
 
+
+    //etapes
     'start':{
-        mode:'smartphone',
+        mode:'sms',
         title:'title',
         messages:[
-            {text:'Salut <!NAME!>'},
-            {text:'ça va ?'},
-            {text:'^.^'},
+            {text:'Salut <!NAME!>',from:'nina'},
+            {text:'ça va ?',from:'nina'},
+            {text:'^.^',from:'nina'},
 
         ],
         answers:[
@@ -27,7 +36,6 @@ let story =
     },
 
     'resp2':{
-        mode:'smartphone',
         title:'title2',
         messages:[
             {text:'Si mal que ça ?'},

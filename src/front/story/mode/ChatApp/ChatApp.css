@@ -1,0 +1,12 @@
+header {
+    height: 55px;
+    /* line-height: 35px; */
+    background-color: #303030;
+    color: white;
+    display:flex;
+    flex-direction: row;
+}
+
+.ChatApp {
+    height: 100%;
+}

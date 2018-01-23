@@ -54,7 +54,7 @@ class Answers extends Component {
                 <FlatButton
                     disabled={this.props.disabled}
                     onClick={this.handleOpen} style={{backgroundColor:'#dedede'}}
-                    label={this.props.disabled ? "..." : "Saisissez un message..." }
+                    label={this.props.disabled ? "..." : this.props.label }
                     fullWidth={true} />
                 <Dialog
                     title=""

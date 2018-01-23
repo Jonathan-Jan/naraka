@@ -3,31 +3,17 @@ import IconUser from 'material-ui/svg-icons/action/account-circle';
 import IconPhone from 'material-ui/svg-icons/communication/phone';
 import IconMenuPhone from 'material-ui/svg-icons/navigation/more-vert';
 import IconBack from 'material-ui/svg-icons/navigation/arrow-back';
-import FlatButton  from 'material-ui/FlatButton';
 
-import shortid from 'shortid';
-
-import './Smartphone.css';
-import {Flex,FlexColumn,FlexRow} from 'front/FlexUtil';
-import Message from 'front/story/Message/Message';
+import './Sms.css';
+import {Flex,FlexRow} from 'front/FlexUtil';
+import Messages from 'front/story/Message/Messages';
 import Answers from 'front/story/Answers/Answers';
 
-class Smartphone extends Component {
-
-    constructor(props) {
-        super(props);
-    }
+class Sms extends Component {
 
     render() {
-
-        let messages = this.props.messages.map((msg) => {
-            return (
-                <Message key={shortid.generate()} from={msg.from} text={msg.text}/>
-            );
-        });
-
         return (
-            <div className="Smartphone">
+            <div className="Sms">
                 <header>
                     <FlexRow>
                         <IconBack style={styles.icon}/>
@@ -43,12 +29,9 @@ class Smartphone extends Component {
                 </header>
 
                 <div style={{display:'flex',flexDirection:'column',position: 'absolute',bottom: '50px',width: '100%'}}>
-                    <div style={{display:'flex',flexDirection:'column'}}>
-                        {messages}
-                    </div>
+                    <Messages messages={this.props.messages}/>
 
-                    <Answers disabled={!this.props.stepDone} answers={this.props.answers} onAnswer={this.props.onAnswer}/>
-
+                    <Answers label="Saisissez un message..." disabled={!this.props.stepDone} answers={this.props.answers} onAnswer={this.props.onAnswer}/>
                 </div>
 
             </div>
@@ -61,8 +44,8 @@ const styles = {
     icon: {
         height:'40px',
         width:'40px',
-        color: 'white'
+        color:'white'
     }
 }
 
-export default Smartphone;
+export default Sms;
