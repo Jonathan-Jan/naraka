@@ -5,8 +5,8 @@
     justify-content: center;
     min-height: 24em;
     background-color: #85b4bf;
-    height: 100%;
     color: white;
+    min-height: 100%;
 }
 
 .Narator .message {

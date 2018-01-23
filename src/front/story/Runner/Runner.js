@@ -56,7 +56,9 @@ class Runner extends Component {
     }
 
     componentDidUpdate(prevProps, prevState) {
-        window.scroll({ top: 2500, left: 0, behavior: 'smooth' });
+        if (this.state.step.mode !== 'narator') {
+            window.scroll({ top: 2500, left: 0, behavior: 'smooth' });
+        }
     }
 
     render() {
