@@ -64,9 +64,15 @@ class Step {
         let message = this.messages[this.cursor];
 
         let promise = new Promise((resolve) => {
+
+            if (message.writeTime > 0) {
+                resolve(message);
+                return;
+            }
+
 			setTimeout(() => {
                 this.cursor++;
-                resolve(message)
+                resolve(message);
             }, message.writeTime);
 		});
 		return promise;
