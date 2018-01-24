@@ -28,7 +28,7 @@ class Runner extends Component {
 
     onAnswer(answer) {
         this.addMessage({text:answer.text,from:'player'});
-        this.storyRunner.moveTo(answer.destination);
+        this.storyRunner.answer(answer);
     }
 
     componentDidMount() {

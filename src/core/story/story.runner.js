@@ -1,11 +1,30 @@
 import {EventEmitter} from 'eventemitter3';
 
-import storyData from 'core/story/story.data';
+import storyData from 'core/story/test.storydata';
+// import storyData from 'core/story/main.storydata';
+
+/**
+ * Verifie que les conditions du message sont présente dans celles passé en parametre
+ * @return {Boolean} vrai si les conditions sont remplies
+ */
+function checkConditions(conditions) {
+    //aucune condition => vrai
+    if (this.hasConditions.length === 0) return true;
+
+    for (let i = 0; i < this.hasConditions.length; i++) {
+        //si la condition du message n'est pas présente dans le tableau en parametre => faux
+        if (conditions.indexOf(this.hasConditions[i]) < 0) return false;
+    }
+
+    return true;
+}
 
 class Answer {
     constructor(answer) {
         this.text = answer.text;
         this.destination = answer.destination;
+        this.setConditions = answer.setConditions;
+        this.hasConditions = answer.hasConditions  || [];
     }
 
     /**
@@ -17,6 +36,12 @@ class Answer {
         this.text = this.text;
         return this;
     }
+
+    /**
+     * Verifie que les conditions du message sont présente dans celles passé en parametre
+     * @return {Boolean} vrai si les conditions sont remplies
+     */
+    checkConditions = checkConditions.bind(this)
 }
 
 class Message {
@@ -27,6 +52,7 @@ class Message {
             msg.writeTime = 0;
         }
         this.writeTime = msg.writeTime !== undefined ? msg.writeTime : 3000;
+        this.hasConditions = msg.hasConditions || [];
     }
 
     /**
@@ -38,10 +64,16 @@ class Message {
         this.text = this.text;
         return this;
     }
+
+    /**
+     * Verifie que les conditions du message sont présente dans celles passé en parametre
+     * @return {Boolean} vrai si les conditions sont remplies
+     */
+    checkConditions = checkConditions.bind(this)
 }
 
 class Step {
-    constructor(step) {
+    constructor(step, gameData) {
         this.mode = step.mode; //mode de présentation de l'étape : sms / chat / face a face ...
         this.title = step.title;
         this.messages = step.messages ? step.messages.map((msg) => {return new Message(msg, step.mode === 'narator').compile()}) : undefined;
@@ -49,6 +81,9 @@ class Step {
         this.cursor = 0; //message en cours de lecture
         this.destination = step.destination; //dans le cas ou le joueur n'a pas de réponse possible, l'étape doit avoir un attribut destination
         this.clearMsg = step.clearMsg; //signifit qu'il faut nettoyer les messages
+
+        //données de la partie en cours (conditions...)
+        this.gameData = gameData;
     }
 
     /**
@@ -62,6 +97,13 @@ class Step {
         }
 
         let message = this.messages[this.cursor];
+
+        //gestion des conditions.
+        //Si le message necessite des condtions, on verifie qu'elles sont remplies
+        if (!message.checkConditions(this.gameData.conditions)) {
+            this.cursor++;
+            return this.hasMessage() ? this.nextMessage() : undefined;
+        }
 
         let promise = new Promise((resolve) => {
 
@@ -109,6 +151,13 @@ class StoryRunner {
         //historique : permet de pouvoir faire des retour en arrière
         this.history = [];
 
+        //données lié a la partie en cours
+        this.gameData = {
+            //tableau des conditions "gagné" par le joueur
+            //les conditions permette de modifié les messages affiché et les réponses dispo au sein d'une même étape
+            conditions:[]
+        };
+
         //étape en cours de lecture
         this.step = {};
 
@@ -128,9 +177,11 @@ class StoryRunner {
         this.emitter.emit(EVENT.NEW_STEP, this.getStep());
         while(this.step.hasMessage()) {
             let message = await this.step.nextMessage();
-            //on récupère le style associé a cet emetteur
-            message.style = this.storyData._metadata.people[message.from];
-            this.emitter.emit(EVENT.MESSAGE,message);
+            if (message) {
+                //on récupère le style associé a cet emetteur
+                message.style = this.storyData._metadata.people[message.from];
+                this.emitter.emit(EVENT.MESSAGE,message);
+            }
         }
         this.emitter.emit(EVENT.STEP_DONE);
     }
@@ -147,7 +198,7 @@ class StoryRunner {
         //mise à jour de l'étape
         //on récupère le mode et le titre de l'étape en cours pour les conserver dans le cas ou la nouvelle étape n'en a pas
         let {mode,title} = this.step;
-        this.step = new Step(this.storyData[this.storyCursor]);
+        this.step = new Step(this.storyData[this.storyCursor], this.gameData);
         this.step.mode = this.step.mode ? this.step.mode : mode;
         this.step.title = this.step.title ? this.step.title : title;
 
@@ -180,6 +231,15 @@ class StoryRunner {
 
         this.moveCursor(destination);
         this.runStep();
+    }
+
+    answer(answer) {
+        //si cette réponse doit set des conditions, on les ajoute dans les gameData
+        if (answer.setConditions.length > 0) {
+            this.gameData.conditions = this.gameData.conditions.concat(answer.setConditions);
+        }
+
+        this.moveTo(answer.destination);
     }
 
     onMessage(callback) {
