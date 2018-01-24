@@ -1,8 +1,9 @@
 import {EventEmitter} from 'eventemitter3';
 import _ from 'lodash';
 
-import storyData from 'core/story/test.storydata';
+// import storyData from 'core/story/test.storydata';
 // import storyData from 'core/story/main.storydata';
+import storyData from 'core/story/mainSansConditions.storydata';
 
 /**
  * Verifie que les conditions du message sont présente dans celles passé en parametre
