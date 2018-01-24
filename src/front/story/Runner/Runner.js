@@ -14,7 +14,7 @@ class Runner extends Component {
         super(props);
 
         this.state = {
-            step:{},
+            step:undefined,
             messages:[],
             stepDone:false
         };
@@ -28,7 +28,7 @@ class Runner extends Component {
 
     onAnswer(answer) {
         this.addMessage({text:answer.text,from:'player'});
-        this.storyRunner.moveTo(answer.destination);
+        this.storyRunner.answer(answer);
     }
 
     componentDidMount() {
@@ -62,6 +62,9 @@ class Runner extends Component {
     }
 
     render() {
+
+        if (!this.state.step) return (<div></div>);
+
         return (
             <div className='Runner'>
                 <div id='menu-runner'>
@@ -72,7 +75,7 @@ class Runner extends Component {
                     mode={this.state.step.mode}
                     title={this.state.step.title}
                     messages={this.state.messages}
-                    answers={this.state.step ? this.state.step.answers : null}
+                    answers={this.state.step.getAnswers()}
                     stepDone={this.state.stepDone}
                     onAnswer={(answer) => this.onAnswer(answer)}
                     />

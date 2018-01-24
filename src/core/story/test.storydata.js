@@ -2,7 +2,7 @@ let story =
 {
     //info général sur l'histoire
     _metadata:{
-        start:'start',
+        start:'cond_test',
         people: {
             nina: {
                 backgroundColor:'#f9516e',
@@ -64,6 +64,35 @@ let story =
         messages:[
             {text:'Fin =)'},
         ],
+    },
+
+    'cond_test':{
+        mode:'sms',
+        title:'Nina',
+        clearMsg:true,
+        messages:[
+            {text:'Salut <!NAME!>',from:'nina'},
+
+        ],
+        answers:[
+            {text:'cond1',destination:'cond_resp',setConditions:['cond1']},
+            {text:'cond2',destination:'cond_resp',setConditions:['cond2']},
+            {text:'cond3',destination:'cond_resp',setConditions:['cond3']},
+        ]
+    },
+
+    'cond_resp':{
+        messages:[
+            {text:'cond1',from:'nina',hasConditions:['cond1']},
+            {text:'cond2',from:'nina',hasConditions:['cond2']},
+            {text:'cond3',from:'nina',hasConditions:['cond3']},
+
+        ],
+        answers:[
+            {text:'ans_cond1',destination:'cond_test',hasConditions:['cond1']},
+            {text:'ans_cond2',destination:'cond_test',hasConditions:['cond2']},
+            {text:'ans_cond3',destination:'cond_test',hasConditions:['cond3']},
+        ]
     },
 
 };
