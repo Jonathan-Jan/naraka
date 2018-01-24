@@ -1,4 +1,5 @@
 import {EventEmitter} from 'eventemitter3';
+import _ from 'lodash';
 
 import storyData from 'core/story/test.storydata';
 // import storyData from 'core/story/main.storydata';
@@ -23,7 +24,7 @@ class Answer {
     constructor(answer) {
         this.text = answer.text;
         this.destination = answer.destination;
-        this.setConditions = answer.setConditions;
+        this.setConditions = answer.setConditions  || [];
         this.hasConditions = answer.hasConditions  || [];
     }
 
@@ -127,6 +128,13 @@ class Step {
      */
     hasMessage() {
         return !(this.cursor >= this.messages.length);
+    }
+
+    getAnswers() {
+        let answers = _.filter(this.answers, (answer) => {
+            if (answer.checkConditions(this.gameData.conditions)) return answer;
+        });
+        return answers;
     }
 }
 

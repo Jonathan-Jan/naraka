@@ -89,9 +89,9 @@ let story =
 
         ],
         answers:[
-            {text:'cond1',destination:'cond_resp',hasConditions:['cond1']},
-            {text:'cond2',destination:'cond_resp',hasConditions:['cond2']},
-            {text:'cond3',destination:'cond_resp',hasConditions:['cond3']},
+            {text:'ans_cond1',destination:'cond_test',hasConditions:['cond1']},
+            {text:'ans_cond2',destination:'cond_test',hasConditions:['cond2']},
+            {text:'ans_cond3',destination:'cond_test',hasConditions:['cond3']},
         ]
     },
 
