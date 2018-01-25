@@ -8,6 +8,7 @@ import shortid from 'shortid';
 
 import './Narator.css';
 import {Flex,FlexRow} from 'front/FlexUtil';
+import Answers from 'front/story/Answers/Answers';
 
 class Narator extends Component {
 
@@ -28,6 +29,7 @@ class Narator extends Component {
                 <Flex/>
                 {messages}
                 <Flex/>
+                <Answers label="Que choisissez-vous de faire..." disabled={!this.props.stepDone} answers={this.props.answers} onAnswer={this.props.onAnswer}/>
             </div>
         );
     }
