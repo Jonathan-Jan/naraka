@@ -3,7 +3,8 @@ import _ from 'lodash';
 
 // import storyData from 'core/story/test.storydata';
 // import storyData from 'core/story/main.storydata';
-import storyData from 'core/story/mainSansConditions.storydata';
+// import storyData from 'core/story/mainSansConditions.storydata';
+import storyData from 'core/story/generated.storydata';
 
 /**
  * Verifie que les conditions du message sont présente dans celles passé en parametre
@@ -188,7 +189,10 @@ class StoryRunner {
             let message = await this.step.nextMessage();
             if (message) {
                 //on récupère le style associé a cet emetteur
-                message.style = this.storyData._metadata.people[message.from];
+                message.style = {};
+                if (message.from && this.storyData._metadata.people[message.from]) {
+                    message.style = this.storyData._metadata.people[message.from];
+                }
                 this.emitter.emit(EVENT.MESSAGE,message);
             }
         }
