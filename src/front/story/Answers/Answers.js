@@ -6,6 +6,7 @@ import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
 
 import './Answers.css';
+import {FlexColumn} from 'front/FlexUtil';
 
 class Answers extends Component {
 
@@ -33,7 +34,7 @@ class Answers extends Component {
 
     renderAnswer(answer) {
         return (
-            <MenuItem key={shortid.generate()} primaryText={answer.text} onClick={() => this.onAnswer(answer)} />
+            <div className='answer' key={shortid.generate()} onClick={() => this.onAnswer(answer)}>{answer.text}</div>
         );
     }
 
@@ -61,11 +62,12 @@ class Answers extends Component {
                     actions={actions}
                     modal={false}
                     open={this.state.open}
-                    onRequestClose={this.handleClose}>
+                    onRequestClose={this.handleClose}
+                    contentClassName="dialog-answer">
 
-                    <Menu>
+                    <div className="container">
                         {answers}
-                    </Menu>
+                    </div>
 
 
                 </Dialog>
