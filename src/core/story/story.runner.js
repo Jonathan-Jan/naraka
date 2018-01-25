@@ -157,6 +157,7 @@ class StoryRunner {
 
         //story en cours de lecture
         this.storyData = storyData;
+        this.metadata = this.formateMetadata(this.storyData._metadata);
 
         //historique : permet de pouvoir faire des retour en arrière
         this.history = [];
@@ -172,7 +173,19 @@ class StoryRunner {
         this.step = {};
 
         //curseur de l'étape en cours de lecture
-        this.moveCursor(storyData._metadata.start);
+        this.moveCursor(this.metadata.start);
+    }
+
+    formateMetadata(_metadata) {
+        let metadata = _metadata;
+        let people = {};
+
+        _metadata.people.map((pupil) => {
+            people[pupil.name] = pupil;
+        });
+
+        metadata.people = people;
+        return metadata;
     }
 
     start() {
@@ -190,8 +203,8 @@ class StoryRunner {
             if (message) {
                 //on récupère le style associé a cet emetteur
                 message.style = {};
-                if (message.from && this.storyData._metadata.people[message.from]) {
-                    message.style = this.storyData._metadata.people[message.from];
+                if (message.from && this.metadata.people[message.from]) {
+                    message.style = this.metadata.people[message.from];
                 }
                 this.emitter.emit(EVENT.MESSAGE,message);
             }
