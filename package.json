@@ -2,6 +2,7 @@
   "name": "naraka",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://jonathan-jan.fr/other/naraka/",
   "dependencies": {
     "eventemitter3": "^3.0.0",
     "font-awesome": "^4.7.0",
