@@ -9,13 +9,13 @@ Naraka gameplay is centered around dialog which led the player to different poss
 
 **Naraka Editor**
 
-![naraka edit]([http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture-300x196.png)
+![naraka edit](http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture-300x196.png)
 
 **Naraka**
 
-![naraka 1]([http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture_naraka1-168x300.png)
-![naraka 2]([http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture_naraka3-169x300.png)
-![naraka 3]([http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture_naraka2-173x300.png|alt=naraka3)
+![naraka 1](http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture_naraka1-168x300.png)
+![naraka 2](http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture_naraka3-169x300.png)
+![naraka 3](http://jonathan-jan.fr/wp-content/uploads/2018/02/Capture_naraka2-173x300.png)
 
 A Story is a set of step. Each step has a set of message which will be displayed before letting the player chose an answer from a list. Each answer are linked to the next Step. Moreover, step are displayed under a "mode" which set the layout of the step. For exemple, use the "sms" mode to display answer like if they are from an SMS app.
 
