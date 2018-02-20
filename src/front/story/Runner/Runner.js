@@ -34,7 +34,7 @@ class Runner extends Component {
     componentDidMount() {
 
         //on initialise la story
-        this.storyRunner = new StoryRunner();
+        this.storyRunner = new StoryRunner(this.props.storyData);
 
         //on récupère l'étape en cours
         //this.setState({step:this.storyRunner.getStep()});

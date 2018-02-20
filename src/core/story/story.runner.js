@@ -148,7 +148,7 @@ const EVENT = {
 
 class StoryRunner {
 
-    constructor() {
+    constructor(storyDataLocal) {
         //pause active ou non
         this.isPaused = false;
 
@@ -156,7 +156,7 @@ class StoryRunner {
         this.emitter = new EventEmitter();
 
         //story en cours de lecture
-        this.storyData = storyData;
+        this.storyData = storyDataLocal || storyData;
         this.metadata = this.formateMetadata(this.storyData._metadata);
 
         //historique : permet de pouvoir faire des retour en arrière
