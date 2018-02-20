@@ -17,3 +17,9 @@ Sorry for the "Frenchglish / Franglais" in the UI... =/
 
 # Documentation
 Use Naraka Editor to create a build. Paste the JSON into the input field and press Load.
+
+# Use and contribution
+
+Feel free to use this project. Contribution are welcome.
+
+If you are not a developper but want to try making a story, feel free to contact me to ask for help.
